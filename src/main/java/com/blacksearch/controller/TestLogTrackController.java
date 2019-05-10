@@ -18,6 +18,7 @@ public class TestLogTrackController {
 
 	@RequestMapping("/asynLogTrack")
 	public String asynLogTrack(){
+		logger.info("ces--------");
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -29,10 +30,16 @@ public class TestLogTrackController {
 
 	@RequestMapping("/asynLogTrackHasTrace")
 	public String asynLogTrackHasTrace(){
+		logger.info("ces1------");
 		new Thread(new TrackRunnable() {
 			@Override
 			public void trackRun() {
-				logger.info("ces");
+				try {
+					Thread.sleep(4000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				logger.info("ces2-----------");
 			}
 		}).start();
 		return null;
